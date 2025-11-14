@@ -1,0 +1,53 @@
+# Frequently asked questions
+
+## The `logActivity` option is enabled, but nothing is logged
+
+Most Vert.x network clients or servers have a `logActivity` option which enables network activity logging.
+When active, Netty's pipeline is configured for logging on Netty's logger at `DEBUG` level.
+
+This is why switching on the `logActivity` option is not enough.
+You also have to set the `io.netty.handler.logging.LoggingHandler` logger to `DEBUG` level in your logging framework configuration.
+
+
+## If Vert.x is clustered, what happens to event-bus messages if a node crashes?
+
+When you send a message on the event-bus, it is sent to the recipient's node and stored in memory until it is processed.
+It is **not** persisted to disk or a database.
+
+Consequently, if the recipient's node crashes before the message is processed, the message is lost.
+
+If it's not possible to tolerate loss of some messages, there are a few options including:
+
+- idempotent retry when sending fails with an error
+- asynchronous acknowledgement
+
+Otherwise, consider using a full-fledged broker-based messaging system like [Apache ActiveMQ](http://activemq.apache.org/) or [RabbitMQ](https://www.rabbitmq.com/).
+
+Vert.x has clients for such solutions: [Vert.x AMQP Client](https://vertx.io/docs/vertx-amqp-client/java/), [RabbitMQ Client for Vert.x](https://vertx.io/docs/vertx-rabbitmq-client/java/) or [Vert.x-Stomp](https://vertx.io/docs/vertx-stomp/java/).
+
+
+## Why doesn't my event-bus consumer pickup messages sent previously?
+
+When you publish a message on the event-bus, it is sent to all nodes having one or more consumers registered for the corresponding message address.
+It is **not** persisted to disk or a database.
+
+Consequently, new consumers on existing nodes or nodes joining the cluster later will **not** receive this message.
+
+If you need this feature, consider using a full-fledged broker-based messaging system like [Apache ActiveMQ](http://activemq.apache.org/) or [RabbitMQ](https://www.rabbitmq.com/).
+
+Vert.x has clients for such solutions: [Vert.x AMQP Client](https://vertx.io/docs/vertx-amqp-client/java/), [RabbitMQ Client for Vert.x](https://vertx.io/docs/vertx-rabbitmq-client/java/) or [Vert.x-Stomp](https://vertx.io/docs/vertx-stomp/java/).
+
+
+## How to use the JVM built-in address resolver?
+
+By default, Vert.x relies on a non-blocking address resolver instead of the JVM built-in one.
+For most users this is transparent but the non-blocking resolver is less mature and may not work in some environments.
+
+In this case, please file an issue on the [Vert.x core repository](https://github.com/eclipse-vertx/vert.x/issues).
+
+As a workaround, you can switch the non-blocking resolver off and fallback to the JVM built-in one.
+To do so, start the JVM with the `vertx.disableDnsResolver` system property set to `true`:
+
+```text
+-Dvertx.disableDnsResolver=true
+```

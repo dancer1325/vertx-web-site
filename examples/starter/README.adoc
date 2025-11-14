@@ -1,0 +1,32 @@
+= Starter
+
+== How has it been created?
+* https://start.vertx.io[start.vertx.io]
+  ** choose
+    *** Vert.x version
+    *** language
+    *** build tool
+    *** group id
+    *** artifact id
+    *** dependencies: vertx-web
+  * hit **Generate Project** button
+
+== Verticle
+* link:src/main/java/com/example/starter/MainVerticle.java[MainVerticle.java]
+  ** Reason:🧠extends VerticleBase🧠
+
+== How to package?
+* `./mvnw clean package`
+
+== How to launch your tests?
+* `./mvnw clean test`
+
+== how to run your application?
+* `./mvnw clean compile exec:java`
+
+== Help
+
+* https://vertx.io/docs/[Vert.x Documentation]
+* https://stackoverflow.com/questions/tagged/vert.x?sort=newest&pageSize=15[Vert.x Stack Overflow]
+* https://groups.google.com/forum/?fromgroups#!forum/vertx[Vert.x User Group]
+* https://discord.gg/6ry7aqPWXy[Vert.x Discord]

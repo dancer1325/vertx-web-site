@@ -1,9 +1,12 @@
-# Vert.x Website ![Deploy](https://github.com/vertx-web-site/vertx-web-site.github.io/workflows/Deploy/badge.svg)
+# Vert.x Website
 
-This repository contains the source of the Vert.x website (https://vertx.io).
+* [Vert.x website](https://vertx.io) source code
+
+## documentation
+* [here](app/page.md)
 
 ## Quickstart
-
+* TODO:
 Initialize local copy:
 
 ```bash

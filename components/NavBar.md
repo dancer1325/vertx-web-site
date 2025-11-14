@@ -1,0 +1,8 @@
+* [docs](/docs/README.md)
+* [resources](/app/resources/page.md)
+* [blog](/blog)
+* [list of VertX resources](https://github.com/vert-x3/vertx-awesome)
+* [Stack Overflow](https://stackoverflow.com/questions/tagged/vert.x)
+* [Youtube](https://www.youtube.com/channel/UCGN6L3tRhs92Uer3c6VxOSA)
+* [Discord](https://discord.gg/6ry7aqPWXy)
+* [Vert.x Google Group](https://groups.google.com/g/vertx)
